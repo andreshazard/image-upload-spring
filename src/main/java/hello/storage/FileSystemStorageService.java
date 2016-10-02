@@ -32,6 +32,9 @@ public class FileSystemStorageService implements StorageService {
             if (file.isEmpty()) {
                 throw new IllegalArgumentException();
             }
+            else if (checkImageFile.isFileToBig(file)) {
+                throw new IndexOutOfBoundsException();
+            }
             else if (checkImageFile.isFileAnImage(file)) {
                 Files.copy(file.getInputStream(), this.rootLocation.resolve(file.getOriginalFilename()));
             }

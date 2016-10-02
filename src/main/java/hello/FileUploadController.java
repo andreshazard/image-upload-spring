@@ -65,10 +65,13 @@ public class FileUploadController {
 
         try {
             storageService.store(file);
-            redirectAttributes.addFlashAttribute("message", "You successfully uploaded " + file.getOriginalFilename() + "!");
+            redirectAttributes.addFlashAttribute("message", "You successfully uploaded, Maje! " + file.getOriginalFilename() + "!");
             return "redirect:/";
         }catch (IllegalArgumentException e) {
             redirectAttributes.addFlashAttribute("message", "Not an Image file, Pasmado!");
+            return "redirect:/";
+        }catch (IndexOutOfBoundsException e) {
+            redirectAttributes.addFlashAttribute("message", "Image To Big, Culero!");
             return "redirect:/";
 
         }
