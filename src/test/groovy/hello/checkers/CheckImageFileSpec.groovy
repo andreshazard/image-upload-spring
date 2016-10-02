@@ -1,11 +1,9 @@
-package hello
+package hello.checkers
 
 import com.blogspot.toomuchcoding.spock.subjcollabs.Collaborator
 import com.blogspot.toomuchcoding.spock.subjcollabs.Subject
-import hello.checkers.CheckImageFile
 import org.springframework.web.multipart.MultipartFile
 import spock.lang.Specification
-
 /**
  * Created by andreshazard on 10/1/16.
  */
