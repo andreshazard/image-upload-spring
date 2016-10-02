@@ -1,6 +1,7 @@
 package hello.storage;
 
 import hello.checkers.CheckImageFile;
+import hello.zip.ZipTool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -20,6 +21,7 @@ public class FileSystemStorageService implements StorageService {
 
     private final Path rootLocation;
     private final CheckImageFile checkImageFile = new CheckImageFile();
+    private final ZipTool zipTool = new ZipTool();
 
     @Autowired
     public FileSystemStorageService(StorageProperties properties) {
@@ -31,6 +33,10 @@ public class FileSystemStorageService implements StorageService {
         try {
             if (file.isEmpty()) {
                 throw new IllegalArgumentException();
+            }
+            else if (zipTool.isFileAZip(file)) {
+                zipTool.unzip(file.getOriginalFilename());
+                return;
             }
             else if (checkImageFile.isFileToBig(file)) {
                 throw new IndexOutOfBoundsException();
