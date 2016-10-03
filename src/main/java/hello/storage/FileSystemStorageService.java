@@ -20,12 +20,14 @@ import java.util.stream.Stream;
 public class FileSystemStorageService implements StorageService {
 
     private final Path rootLocation;
+    private final Path zipLocation;
     private final CheckImageFile checkImageFile = new CheckImageFile();
     private final ZipTool zipTool = new ZipTool();
 
     @Autowired
     public FileSystemStorageService(StorageProperties properties) {
         this.rootLocation = Paths.get(properties.getLocation());
+        this.zipLocation = Paths.get(properties.getZipLocation());
     }
 
     @Override
@@ -35,6 +37,7 @@ public class FileSystemStorageService implements StorageService {
                 throw new IllegalArgumentException();
             }
             else if (zipTool.isFileAZip(file)) {
+                Files.copy(file.getInputStream(), this.zipLocation.resolve(file.getOriginalFilename()));
                 zipTool.unzip(file.getOriginalFilename());
                 return;
             }

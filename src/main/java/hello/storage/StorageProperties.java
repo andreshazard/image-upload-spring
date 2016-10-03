@@ -10,8 +10,15 @@ public class StorageProperties {
      */
     private String location = "upload-dir";
 
+    private String zipLocation = "zip-dir";
+
     public String getLocation() {
+
         return location;
+    }
+
+    public String getZipLocation() {
+        return zipLocation;
     }
 
     public void setLocation(String location) {
