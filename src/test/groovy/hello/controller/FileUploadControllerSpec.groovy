@@ -1,6 +1,7 @@
+package hello.controller
+
 import com.blogspot.toomuchcoding.spock.subjcollabs.Collaborator
 import com.blogspot.toomuchcoding.spock.subjcollabs.Subject
-import hello.FileUploadController
 import hello.storage.StorageService
 import org.hamcrest.Matchers
 import org.springframework.mock.web.MockMultipartFile

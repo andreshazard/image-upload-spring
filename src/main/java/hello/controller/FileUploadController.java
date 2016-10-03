@@ -1,4 +1,4 @@
-package hello;
+package hello.controller;
 
 /**
  * Created by andreshazard on 10/1/16.
@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 @Controller
 public class FileUploadController {
 
-    private final static String IP_IMAGES_SERVER = "http://192.168.0.10:8000/" ;
+    private final static String IP_IMAGES_SERVER = "http://10.70.1.82:8000/" ;
     private final StorageService storageService;
 
     @Autowired
