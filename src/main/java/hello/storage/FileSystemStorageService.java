@@ -1,6 +1,7 @@
 package hello.storage;
 
 import hello.checkers.CheckImageFile;
+import hello.thumbnail.ThumbnailTool;
 import hello.zip.ZipTool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -23,6 +24,7 @@ public class FileSystemStorageService implements StorageService {
     private final Path zipLocation;
     private final CheckImageFile checkImageFile = new CheckImageFile();
     private final ZipTool zipTool = new ZipTool();
+    private final ThumbnailTool thumbnailTool = new ThumbnailTool();
 
     @Autowired
     public FileSystemStorageService(StorageProperties properties) {
@@ -46,6 +48,16 @@ public class FileSystemStorageService implements StorageService {
             }
             else if (checkImageFile.isFileAnImage(file)) {
                 Files.copy(file.getInputStream(), this.rootLocation.resolve(file.getOriginalFilename()));
+                thumbnailTool.setDataFromMultipartFile(file);
+                if (thumbnailTool.isThumbnailNecessary()) {
+
+                    thumbnailTool.createThumbnail(file.getOriginalFilename(), thumbnailTool.getThumbnailWidthOne(),
+                            thumbnailTool.getThumbnailHeightOne());
+
+                    thumbnailTool.createThumbnail(file.getOriginalFilename(), thumbnailTool.getThumbnailWidthTwo(),
+                            thumbnailTool.getThumbnailHeightTwo());
+                }
+
                 return;
             }
             throw new IllegalArgumentException();
