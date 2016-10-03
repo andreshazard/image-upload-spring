@@ -46,6 +46,7 @@ public class FileSystemStorageService implements StorageService {
             }
             else if (checkImageFile.isFileAnImage(file)) {
                 Files.copy(file.getInputStream(), this.rootLocation.resolve(file.getOriginalFilename()));
+                return;
             }
             throw new IllegalArgumentException();
         } catch (IOException e) {
