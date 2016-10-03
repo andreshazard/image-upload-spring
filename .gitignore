@@ -1,3 +1,6 @@
 .idea/*
 upload-dir/*
 zip-dir/*
+gs-uploading-files.iml
+mvnw
+mvnw.cmd
