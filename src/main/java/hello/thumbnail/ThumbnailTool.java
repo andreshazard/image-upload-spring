@@ -38,7 +38,7 @@ public class ThumbnailTool {
 
 
     public boolean isThumbnailNecessary() {
-        if (this.width > 128 && this.height > 128) {
+        if (this.width >= 128 && this.height >= 128) {
             return true;
         }
         return false;
