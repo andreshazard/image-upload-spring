@@ -5,3 +5,4 @@ gs-uploading-files.iml
 mvnw
 mvnw.cmd
 .mvn/*
+target/*
